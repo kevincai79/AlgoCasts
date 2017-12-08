@@ -16,8 +16,6 @@ function capitalize(str) {
     newStr = str[0];
   }
 
-  console.log(newStr);
-
   for (let i = 1; i < str.length; i ++ ) {
     if (str[i -1].match(/[^a-zA-Z]/) && str[i].match(/[a-zA-Z]/)) {
       newStr = newStr + str[i].toUpperCase();
@@ -27,6 +25,18 @@ function capitalize(str) {
   }
 
   return newStr;
+}
+
+// Below is the solution 2:
+
+function capitalize(str) {
+  const words = [];
+
+  for (let word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  return words.join(' ');
 }
 
 module.exports = capitalize;
