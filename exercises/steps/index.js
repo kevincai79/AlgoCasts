@@ -24,4 +24,31 @@ function steps(n) {
   }
 }
 
+// Below is the solution 2 with recusion
+
+// From 0 to n(iterate through rows)
+//   Create an empty string 'stair'
+//   From 0 to n (iterate through columns)
+//     If the current column is equal to or less than the current row
+//       Add a '#' to 'stair'
+//     ELSE
+//         Add a space to 'stair'
+//   Console log 'stair'
+
+function steps(n) {
+  for (let row = 0; row < n; row ++) {
+    let stair = '';
+
+    for (let column = 0; column < n; column ++) {
+      if (column <= row) {
+        stair += '#';
+      } else {
+        stair += ' ';
+      }
+    }
+
+    console.log(stair);
+  }
+}
+
 module.exports = steps;
