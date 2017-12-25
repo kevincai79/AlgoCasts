@@ -27,6 +27,24 @@ const Queue = require('./queue');
 function weave(sourceOne, sourceTwo) {
   const q = new Queue();
 
+  while (sourceOne.peek() || sourceTwo.peek()) {
+    if (sourceOne.peek()) {
+      q.add(sourceOne.remove());
+    }
+
+    if (sourceTwo.peek()) {
+      q.add(sourceTwo.remove());
+    }
+  }
+
+  return q;
+}
+
+// Below solution code is not clean, should use above one
+
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue();
+
   if (sourceOne.data.length === sourceTwo.data.length) {
     let loopTimes = sourceOne.data.length;
 
