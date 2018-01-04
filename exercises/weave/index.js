@@ -24,6 +24,64 @@
 
 const Queue = require('./queue');
 
-function weave(sourceOne, sourceTwo) {}
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue();
+
+  while (sourceOne.peek() || sourceTwo.peek()) {
+    if (sourceOne.peek()) {
+      q.add(sourceOne.remove());
+    }
+
+    if (sourceTwo.peek()) {
+      q.add(sourceTwo.remove());
+    }
+  }
+
+  return q;
+}
+
+// Below solution code is not clean, should use above one
+
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue();
+
+  if (sourceOne.data.length === sourceTwo.data.length) {
+    let loopTimes = sourceOne.data.length;
+
+    for(let i = 0; i < loopTimes; i++) {
+      q.add(sourceOne.data.pop());
+      q.add(sourceTwo.data.pop());
+    }
+    return q;
+  } else if (sourceOne.data.length > sourceTwo.data.length) {
+    let loopTimes = sourceTwo.data.length;
+
+    for (let i = 0; i < loopTimes; i++) {
+      q.add(sourceOne.data.pop());
+      q.add(sourceTwo.data.pop());
+    }
+
+    loopTimes = sourceOne.data.length;
+    for (let i = 0; i < loopTimes; i++) {
+      q.add(sourceOne.data.pop());
+    }
+
+    return q;
+  } else {
+    let loopTimes = sourceOne.data.length;
+
+    for (let i = 0; i < loopTimes; i++) {
+      q.add(sourceOne.data.pop());
+      q.add(sourceTwo.data.pop());
+    }
+
+    loopTimes = sourceTwo.data.length;
+    for (let i = 0; i < loopTimes; i++) {
+      q.add(sourceTwo.data.pop());
+    }
+
+    return q;
+  }
+}
 
 module.exports = weave;
