@@ -11,6 +11,22 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+function nthNodeAfter(node, n) {
+  for (let i = 0; i < n; i++) {
+    node = node.next;
+  }
+  return node;
+}
+
+function fromLast(list, n) {
+  let slow = list.head;
+  let fast = nthNodeAfter(slow, n);
+
+  while (fast.next !== null) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+  return slow;
+}
 
 module.exports = fromLast;
