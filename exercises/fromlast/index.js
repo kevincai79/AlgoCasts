@@ -11,18 +11,24 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function nthNodeAfter(node, n) {
-  for (let i = 0; i < n; i++) {
-    node = node.next;
-  }
-  return node;
-}
+// function nthNodeAfter(node, n) {
+//   for (let i = 0; i < n; i++) {
+//     node = node.next;
+//   }
+//   return node;
+// }
 
 function fromLast(list, n) {
   let slow = list.head;
-  let fast = nthNodeAfter(slow, n);
+  let fast = list.head;
 
-  while (fast.next !== null) {
+  while (n > 0) {
+    fast = fast.next;
+    n--;
+  }
+  // let fast = nthNodeAfter(slow, n);
+
+  while (fast.next) {
     slow = slow.next;
     fast = fast.next;
   }
